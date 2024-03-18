@@ -1,0 +1,586 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="2/26/2024 8:27:32 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="CBNGOV01"
+  DTS:CreatorName="CBNGOV01\Joshua"
+  DTS:DTSID="{980245B8-DD81-452E-B684-671A5CA678CF}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5397.1"
+  DTS:LocaleID="2057"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="7"
+  DTS:VersionGUID="{28F16AA7-6B88-49F6-824E-AD60BAE9C1E7}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[CBNGOV01\SQLEXPRESS.SSIS_Staging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{FBF47930-031B-43C8-9B42-B96B1D6A912A}"
+      DTS:ObjectName="CBNGOV01\SQLEXPRESS.SSIS_Staging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=CBNGOV01\SQLEXPRESS;Initial Catalog=SSIS_Staging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-Package-{FBF47930-031B-43C8-9B42-B96B1D6A912A}CBNGOV01\SQLEXPRESS.SSIS_Staging;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Product Connection]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{C7479CBD-2EB1-4597-AAE7-00A149BFB262}"
+      DTS:ObjectName="Product Connection">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="2057"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="C:\Training\SSIS Docs\Product Table.txt">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Product_Id"
+              DTS:DTSID="{644381D1-C7A1-415C-9B43-C9A80E972075}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Product_Name"
+              DTS:DTSID="{2BE74AD8-0C5A-46A3-832C-B1B782631A46}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Model_Year"
+              DTS:DTSID="{C4A9AB1C-DF57-4B9F-AAB5-1DBB70EC4327}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="List_Price"
+              DTS:DTSID="{43E1567E-87B4-4D87-844D-9FB6CC7CE9A7}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Category_Name"
+              DTS:DTSID="{1166E06D-06A8-425E-B7C1-A4A89738A29B}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Extract Product"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{50276440-4C97-4CEA-84B0-CE0B36A13789}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Extract Product"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Extract Product\Flat File Source"
+              componentClassID="Microsoft.FlatFileSource"
+              contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Source"
+              localeId="2057"
+              name="Flat File Source"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether zero-length columns are treated as null."
+                  name="RetainNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                  name="FileNameColumnName"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Extract Product\Flat File Source.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Product Connection]"
+                  connectionManagerRefId="Package.ConnectionManagers[Product Connection]"
+                  name="FlatFileConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Extract Product\Flat File Source.Outputs[Flat File Source Output]"
+                  name="Flat File Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract Product\Flat File Source.Outputs[Flat File Source Output].Columns[Product_Id]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract Product\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Product_Id]"
+                      length="50"
+                      lineageId="Package\Extract Product\Flat File Source.Outputs[Flat File Source Output].Columns[Product_Id]"
+                      name="Product_Id"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Extract Product\Flat File Source.Outputs[Flat File Source Output].Columns[Product_Name]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract Product\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Product_Name]"
+                      length="50"
+                      lineageId="Package\Extract Product\Flat File Source.Outputs[Flat File Source Output].Columns[Product_Name]"
+                      name="Product_Name"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Extract Product\Flat File Source.Outputs[Flat File Source Output].Columns[Model_Year]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract Product\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Model_Year]"
+                      length="50"
+                      lineageId="Package\Extract Product\Flat File Source.Outputs[Flat File Source Output].Columns[Model_Year]"
+                      name="Model_Year"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Extract Product\Flat File Source.Outputs[Flat File Source Output].Columns[List_Price]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract Product\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[List_Price]"
+                      length="50"
+                      lineageId="Package\Extract Product\Flat File Source.Outputs[Flat File Source Output].Columns[List_Price]"
+                      name="List_Price"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Extract Product\Flat File Source.Outputs[Flat File Source Output].Columns[Category_Name]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract Product\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Category_Name]"
+                      length="50"
+                      lineageId="Package\Extract Product\Flat File Source.Outputs[Flat File Source Output].Columns[Category_Name]"
+                      name="Category_Name"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Extract Product\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Product_Id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Product_Id" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Product\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Product_Name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Product_Name" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Product\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Model_Year]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Model_Year" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Product\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[List_Price]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="List_Price" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Product\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Category_Name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Category_Name" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Extract Product\Flat File Source.Outputs[Flat File Source Error Output]"
+                  isErrorOut="true"
+                  name="Flat File Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract Product\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      codePage="1252"
+                      dataType="text"
+                      description="Flat File Source Error Output Column"
+                      lineageId="Package\Extract Product\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      name="Flat File Source Error Output Column" />
+                    <outputColumn
+                      refId="Package\Extract Product\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Extract Product\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Extract Product\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Extract Product\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Extract Product\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[Product]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Extract Product\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[CBNGOV01\SQLEXPRESS.SSIS_Staging]"
+                  connectionManagerRefId="Package.ConnectionManagers[CBNGOV01\SQLEXPRESS.SSIS_Staging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Extract Product\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Extract Product\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Product_Id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Product_Id"
+                      externalMetadataColumnId="Package\Extract Product\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Product_Id]"
+                      lineageId="Package\Extract Product\Flat File Source.Outputs[Flat File Source Output].Columns[Product_Id]" />
+                    <inputColumn
+                      refId="Package\Extract Product\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Product_Name]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Product_Name"
+                      externalMetadataColumnId="Package\Extract Product\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Product_Name]"
+                      lineageId="Package\Extract Product\Flat File Source.Outputs[Flat File Source Output].Columns[Product_Name]" />
+                    <inputColumn
+                      refId="Package\Extract Product\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Model_Year]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Model_Year"
+                      externalMetadataColumnId="Package\Extract Product\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Model_Year]"
+                      lineageId="Package\Extract Product\Flat File Source.Outputs[Flat File Source Output].Columns[Model_Year]" />
+                    <inputColumn
+                      refId="Package\Extract Product\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[List_Price]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="List_Price"
+                      externalMetadataColumnId="Package\Extract Product\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[List_Price]"
+                      lineageId="Package\Extract Product\Flat File Source.Outputs[Flat File Source Output].Columns[List_Price]" />
+                    <inputColumn
+                      refId="Package\Extract Product\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Category_Name]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Category_Name"
+                      externalMetadataColumnId="Package\Extract Product\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Category_Name]"
+                      lineageId="Package\Extract Product\Flat File Source.Outputs[Flat File Source Output].Columns[Category_Name]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Extract Product\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Product_Id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Product_Id" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Product\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Product_Name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Product_Name" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Product\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Model_Year]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Model_Year" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Product\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[List_Price]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="List_Price" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Product\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Category_Name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Category_Name" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Extract Product\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Extract Product\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract Product\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Extract Product\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Extract Product\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Extract Product\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Extract Product.Paths[Flat File Source Output]"
+              endId="Package\Extract Product\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Flat File Source Output"
+              startId="Package\Extract Product\Flat File Source.Outputs[Flat File Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="149.6,41.6"
+          Id="Package\Extract Product"
+          TopLeft="624.166632563705,78.8666661182377" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Extract Product">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="151.2,41.6"
+          Id="Package\Extract Product\Flat File Source"
+          TopLeft="504.166639120216,99.6666659735971" />
+        <NodeLayout
+          Size="171.2,41.6"
+          Id="Package\Extract Product\OLE DB Destination"
+          TopLeft="634.166632017329,254.799998228153" />
+        <EdgeLayout
+          Id="Package\Extract Product.Paths[Flat File Source Output]"
+          TopLeft="579.766639120216,141.266665973597">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="139.999992897114,113.533332254556"
+              Start="0,0"
+              End="139.999992897114,106.033332254556">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.7666661272778" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,52.7666661272778"
+                    Point2="0,56.7666661272778"
+                    Point3="4,56.7666661272778" />
+                  <mssgle:LineSegment
+                    End="135.999992897114,56.7666661272778" />
+                  <mssgle:CubicBezierSegment
+                    Point1="135.999992897114,56.7666661272778"
+                    Point2="139.999992897114,56.7666661272778"
+                    Point3="139.999992897114,60.7666661272778" />
+                  <mssgle:LineSegment
+                    End="139.999992897114,106.033332254556" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Extract Product\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
